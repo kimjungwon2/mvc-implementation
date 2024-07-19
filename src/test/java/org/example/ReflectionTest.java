@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.annotation.Controller;
 import org.example.controller.Service;
+import org.example.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.reflections.Reflections;
@@ -9,9 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class ReflectionTest {
@@ -34,5 +37,16 @@ public class ReflectionTest {
         annotations.forEach(annotation -> beans.addAll(reflections.getTypesAnnotatedWith(annotation)));
 
         return beans;
+    }
+
+    @DisplayName("")
+    @Test
+    void showClass(){
+      //given
+        Class<User> clazz =User.class;
+        logger.debug(clazz.getName());
+
+        logger.debug("User all declared fields: [{}]", Arrays.stream(clazz.getDeclaredFields()).collect(Collectors.toList()));
+
     }
 }
