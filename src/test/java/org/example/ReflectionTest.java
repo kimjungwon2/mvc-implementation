@@ -54,8 +54,19 @@ public class ReflectionTest {
 
     @DisplayName("")
     @Test
-    void load(){
+    void load() throws ClassNotFoundException {
 
+        // 1
+        Class<User> clazz = User.class;
+
+        // 2
+        User user = new User("serverwizard","김정원");
+        Class<? extends User> clazz2 = user.getClass();
+
+        // 3
+        Class<?> clazz3 = Class.forName("org.example.User");
+
+        logger.debug("clazz: [{}]", clazz);
     }
 
 }
