@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+
 
 public class ReflectionTest {
 
@@ -64,9 +67,15 @@ public class ReflectionTest {
         Class<? extends User> clazz2 = user.getClass();
 
         // 3
-        Class<?> clazz3 = Class.forName("org.example.User");
+        Class<?> clazz3 = Class.forName("org.example.model.User");
 
         logger.debug("clazz: [{}]", clazz);
+        logger.debug("clazz2: [{}]", clazz2);
+        logger.debug("clazz3: [{}]", clazz3);
+
+        assertThat(clazz==clazz2).isTrue();
+        assertThat(clazz2==clazz3).isTrue();
+        assertThat(clazz3==clazz).isTrue();
     }
 
 }
